@@ -33,4 +33,5 @@ Docker - esphome/esphome:dev
 ![UI](images/garage-1.jpeg?raw=true "Door Sensor")
 ![UI](images/garage-2.jpeg?raw=true "ESP Board")
 ![UI](images/garage-3.jpeg?raw=true "Installed")
+![UI](images/garage-4.jpeg?raw=true "Installed Reed")
 ![UI](images/ha-1.png?raw=true "Home-Assistant")
