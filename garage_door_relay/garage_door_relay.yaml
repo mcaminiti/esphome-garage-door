@@ -1,0 +1,80 @@
+esphome:
+  name: garage_door_relay
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: "REDACTED"
+  password: "REDACTED"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage Door Relay"
+    password: "REDACTED"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable Web server.
+web_server:
+  port: 80
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO05
+    mode: INPUT_PULLUP
+    inverted: False
+  name: "Double Garage Door Sensor"
+  device_class: garage_door
+  filters:
+    - delayed_on: 20ms
+
+- platform: gpio
+  pin:
+    number: GPIO12
+    mode: INPUT_PULLUP
+    inverted: False
+  name: "Single Garage Door Sensor"
+  device_class: garage_door
+  filters:
+    - delayed_on: 20ms
+
+# Relay configuration entry
+switch:
+- platform: gpio
+  id: relay1
+  pin:
+    number: GPIO21
+    inverted: False
+  restore_mode: ALWAYS_OFF
+- platform: template
+  name: "Double Garage Door Switch"
+  icon: "mdi:garage"
+  turn_on_action:
+  - switch.turn_on: relay1
+  - delay: 1s
+  - switch.turn_off: relay1
+
+- platform: gpio
+  id: relay2
+  pin:
+    number: GPIO22
+    inverted: False
+  restore_mode: ALWAYS_OFF
+- platform: template
+  name: "Single Garage Door Switch"
+  icon: "mdi:garage"
+  turn_on_action:
+  - switch.turn_on: relay2
+  - delay: 1s
+  - switch.turn_off: relay2
+- platform: restart
+  name: 'ESPHome Garage Door REBOOT'
