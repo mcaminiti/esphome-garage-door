@@ -31,8 +31,37 @@ Alternative Parts for board
 - Input 3 - GPIO13 - Double Door Sensor
 - Input 4 - GPIO14
 
-## Home Assistant Lovelace Horizontal Stack Card
-```cards:
+## Home Assistant Lovelace Horizontal Stack Card - Cover
+```
+cards:
+  - entity: cover.double_garage
+    hold_action:
+      action: more-info
+    name: Double Car Garage
+    show_icon: true
+    show_name: true
+    state_color: true
+    tap_action:
+      action: toggle
+    type: button
+  - entity: cover.single_garage
+    hold_action:
+      action: more-info
+    name: Single Car Garage
+    show_icon: true
+    show_name: true
+    state_color: true
+    tap_action:
+      action: toggle
+    type: button
+title: Garage Doors
+type: horizontal-stack
+
+```
+
+## Home Assistant Lovelace Horizontal Stack Card - No Cover
+```
+cards:
   - entity: binary_sensor.double_garage_door_sensor
     hold_action:
       action: more-info

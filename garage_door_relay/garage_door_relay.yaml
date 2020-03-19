@@ -25,20 +25,33 @@ ota:
 # Enable Web server.
 web_server:
   port: 80
-    
-binary_sensor:    
+
+binary_sensor:
+#- platform: gpio
+#  pin:
+#    number: GPIO05
+#    mode: INPUT_PULLUP
+#    inverted: False
+#  name: "Bad Door Sensor"
+#  device_class: garage_door
+#  filters:
+#    - delayed_on: 30ms
+#    - delayed_off: 1s
+#    - delayed_on_off: 1s
+
 - platform: gpio
   pin:
     number: GPIO12
     mode: INPUT_PULLUP
     inverted: False
   name: "Single Garage Door Sensor"
+  id: single_garage
   device_class: garage_door
   filters:
     - delayed_on: 30ms
 #    - delayed_off: 1s
-#    - delayed_on_off: 1s        
-    
+#    - delayed_on_off: 1s
+
 # Relay configuration entry
 
 - platform: gpio
@@ -47,11 +60,12 @@ binary_sensor:
     mode: INPUT_PULLUP
     inverted: False
   name: "Double Garage Door Sensor"
+  id: double_garage
   device_class: garage_door
   filters:
     - delayed_on: 30ms
 #    - delayed_off: 1s
-#    - delayed_on_off: 1s  
+#    - delayed_on_off: 1s
 
 switch:
 - platform: gpio
@@ -83,3 +97,39 @@ switch:
   - switch.turn_off: relay2
 - platform: restart
   name: 'ESPHome Garage Door REBOOT'
+
+cover:
+  - platform: template
+    name: Double Garage
+    device_class: garage
+    lambda: !lambda |-
+      if (id(double_garage).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: relay1
+      - delay: 1s
+      - switch.turn_off: relay1
+    close_action:
+      - switch.turn_on: relay1
+      - delay: 1s
+      - switch.turn_off: relay1
+  - platform: template
+    name: Single Garage
+    device_class: garage
+    lambda: !lambda |-
+      if (id(single_garage).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: relay2
+      - delay: 1s
+      - switch.turn_off: relay2
+    close_action:
+      - switch.turn_on: relay2
+      - delay: 1s
+      - switch.turn_off: relay2
