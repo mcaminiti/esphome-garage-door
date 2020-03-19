@@ -32,7 +32,8 @@ Alternative Parts for board
 - Input 4 - GPIO14
 
 ## Home Assistant Lovelace Horizontal Stack Card
-```cards:
+```
+cards:
   - entity: binary_sensor.double_garage_door_sensor
     hold_action:
       action: more-info
