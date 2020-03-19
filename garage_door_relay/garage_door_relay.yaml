@@ -25,18 +25,8 @@ ota:
 # Enable Web server.
 web_server:
   port: 80
-
-binary_sensor:
-- platform: gpio
-  pin:
-    number: GPIO05
-    mode: INPUT_PULLUP
-    inverted: False
-  name: "Double Garage Door Sensor"
-  device_class: garage_door
-  filters:
-    - delayed_on: 20ms
-
+    
+binary_sensor:    
 - platform: gpio
   pin:
     number: GPIO12
@@ -45,9 +35,24 @@ binary_sensor:
   name: "Single Garage Door Sensor"
   device_class: garage_door
   filters:
-    - delayed_on: 20ms
-
+    - delayed_on: 30ms
+#    - delayed_off: 1s
+#    - delayed_on_off: 1s        
+    
 # Relay configuration entry
+
+- platform: gpio
+  pin:
+    number: GPIO13
+    mode: INPUT_PULLUP
+    inverted: False
+  name: "Double Garage Door Sensor"
+  device_class: garage_door
+  filters:
+    - delayed_on: 30ms
+#    - delayed_off: 1s
+#    - delayed_on_off: 1s  
+
 switch:
 - platform: gpio
   id: relay1
