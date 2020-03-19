@@ -31,13 +31,44 @@ Alternative Parts for board
 - Input 3 - GPIO13 - Double Door Sensor
 - Input 4 - GPIO14
 
+## Home Assistant Lovelace Horizontal Stack Card
+```cards:
+  - entity: binary_sensor.double_garage_door_sensor
+    hold_action:
+      action: more-info
+    name: Double Car Garage
+    show_icon: true
+    show_name: true
+    state_color: true
+    tap_action:
+      action: call-service
+      service: homeassistant.turn_on
+      service_data:
+        entity_id: switch.double_garage_door_switch
+    type: button
+  - entity: binary_sensor.single_garage_door_sensor
+    hold_action:
+      action: more-info
+    name: Single Car Garage
+    show_icon: true
+    show_name: true
+    state_color: true
+    tap_action:
+      action: call-service
+      service: homeassistant.turn_on
+      service_data:
+        entity_id: switch.single_garage_door_switch
+    type: button
+title: Garage Doors
+type: horizontal-stack
+```
 
 ## Docker Information
 Docker - esphome/esphome:dev
 ```docker run -d -v "/LOCAL/PATH/esphome/config:/config" --net=host esphome/esphome:dev```
 
 ## Software
-- [ESPHome Flasher](https://github.com/esphome/esphome-flasher/releases) - Used to flash initial config to ESP32.  Used this utility on a Mac and it required extra drivers installed for serial to USB. 
+- [ESPHome Flasher](https://github.com/esphome/esphome-flasher/releases) - Used to flash initial config to ESP32.  Used this utility on a Mac and it required extra drivers installed for serial to USB.
 - [Drivers](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) - Installed these drivers to make the Serial port show up when connecting as USB to Mac.
 
 ## Project Pictures
@@ -47,3 +78,4 @@ Docker - esphome/esphome:dev
 ![UI](images/garage-4.jpeg?raw=true "Installed Reed")
 ![UI](images/garage-5.jpeg?raw=true "Installed Reed 2")
 ![UI](images/ha-1.png?raw=true "Home-Assistant")
+![UI](images/ha-2.png?raw=true "Home-Assistant Buttons")
