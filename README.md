@@ -21,6 +21,17 @@ Alternative Parts for board
 ## Config YAML
 - [garage_door_relay](https://github.com/mcaminiti/esphome-garage-door/blob/master/garage_door_relay/garage_door_relay.yaml)
 
+## GPIO Mapping
+- Relay 1 - GPIO21 - Double Door Opener
+- Relay 2 - GPIO22 - Single Door Opener
+- Relay 3 - GPIO18 (Unused)
+- Relay 4 - GPIO19 (unused)
+- Input 1 - GPIO05 (Unused, moved to input 3 when I had Open/Close Flapping)
+- Input 2 - GPIO12 - Single Door Sensor
+- Input 3 - GPIO13 - Double Door Sensor
+- Input 4 - GPIO14
+
+
 ## Docker Information
 Docker - esphome/esphome:dev
 ```docker run -d -v "/LOCAL/PATH/esphome/config:/config" --net=host esphome/esphome:dev```
