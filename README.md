@@ -4,7 +4,7 @@
 # Overview
 ESPHome device was built using a custom board with screw down terminals, and 4 relays built in.  Used ESPHome Docker to compile initial configuration and load onto device.  Ran 4 wire cable to leverage for run from board to sensors and for a run to each of the openers.  
 
-I mounted my board in an enclosed electrical box that I bolted to the hanging bars of one of the openers.  Powered via a USB cable to the outlet above the opener.  Sensors were wired betweeb both doors to allow for single 4 wire run.
+I mounted my board in an enclosed electrical box that I bolted to the hanging bars of one of the openers.  Powered via a USB cable to the outlet above the opener.  Sensors were wired between both doors to allow for single 4 wire run.
 
 The Reed sensors I used from honeywell are made for Garage Doors and allow a few inches gap which made mounting easy.  I drilled two holes in the top bar of the garage door and used machine screws to secure them to the top bar.  Then I mounted the sensor to the wall across from the magnet.
 
